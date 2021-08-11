@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "332659904233",
+    "project_id": "phrasal-waters-317801",
+    "storage_bucket": "phrasal-waters-317801.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:332659904233:android:cf03139791c25ca2e2aa78",
+        "android_client_info": {
+          "package_name": "com.example.heedong"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "332659904233-1cku2oqq69v9fvgm1j91tpbpt8bdskmi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.heedong",
+            "certificate_hash": "6a6cded64df62ab2d690bb2de715f9006a4bfd40"
+          }
+        },
+        {
+          "client_id": "332659904233-30aojnq573mm0kohsv14opok2o22uhf0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRL_uYadhbLKtPlRZEEsLuWQgXqzqvsI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "332659904233-30aojnq573mm0kohsv14opok2o22uhf0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
