@@ -5,6 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
     tools:context=".HomeActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="드디어 성공했구나"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_horizontal"
+        />
 
 </LinearLayout>

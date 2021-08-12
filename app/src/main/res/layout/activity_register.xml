@@ -4,41 +4,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-android:padding="5dp"
+    android:padding="5dp"
     tools:context=".RegisterActivity">
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:id="@+id/register_nickname"
-        android:hint="Nickname"/>
+        android:hint="Nickname"
+        android:layout_gravity="center_horizontal"/>
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:id="@+id/register_email"
         android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        android:layout_gravity="center_horizontal"
         />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:id="@+id/register_password"
-        android:hint="Password"/>
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_gravity="center_horizontal"/>
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:id="@+id/register_passwordcheck"
-        android:hint="Password Check"/>
+        android:inputType="textPassword"
+        android:hint="Password Check"
+        android:layout_gravity="center_horizontal"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="50dp"
         android:id="@+id/register_register"
-        android:text="Register"/>
+        android:text="Register"
+        android:layout_gravity="center_horizontal"/>
+
+
 
 
 
