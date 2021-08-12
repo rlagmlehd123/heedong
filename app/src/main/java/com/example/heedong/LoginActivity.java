@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                                     finish();
 
                                 } else {
-                                    Toast.makeText(LoginActivity.this,"로그인 오류", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(LoginActivity.this,"로그인 오류", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
