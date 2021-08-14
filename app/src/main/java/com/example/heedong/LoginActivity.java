@@ -47,21 +47,29 @@ public class LoginActivity extends AppCompatActivity {
         login_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = login_email.getText().toString().trim();
-                String password = login_password.getText().toString().trim();
+                String email = login_email.getText().toString();
+                String password = login_password.getText().toString();
                 firebaseAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()){
+                                if(!task.isSuccessful()){
+
+
+                                 if(password.length() < 8){
+                                     Toast.makeText(LoginActivity.this,"비밀번호는 8자리 이상이어야 합니다.", Toast.LENGTH_SHORT).show();
+                                 } else {
+                                    Toast.makeText(LoginActivity.this, "로그인 오류", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
                                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                     startActivity(intent);
                                     finish();
 
-                                } else {
-                                    Toast.makeText(LoginActivity.this,"로그인 오류", Toast.LENGTH_SHORT).show();
-                                }
                             }
+
+                        }
+
                         });
             }
         });
