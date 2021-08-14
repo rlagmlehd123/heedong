@@ -12,14 +12,16 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button login_login, login_register;
+    Button login_login, login_register, login_naver, login_kakao, login_google;
     EditText login_email, login_password;
     private FirebaseAuth firebaseAuth;
+    private View loginlayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,35 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             }
                         });
+            }
+        });
+
+        loginlayout = findViewById(R.id.login_layout);
+
+        login_naver = findViewById(R.id.login_naver);
+
+        login_naver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(loginlayout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
+        login_kakao = findViewById(R.id.login_kakao);
+
+        login_kakao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(loginlayout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
+        login_google = findViewById(R.id.login_google);
+
+        login_google.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(loginlayout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
             }
         });
     }
