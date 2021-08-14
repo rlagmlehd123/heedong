@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -52,7 +53,7 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:id="@+id/login_naver"
+        android:id="@+id/register_naver"
         android:text="네이버 로그인"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#03C75A"
@@ -61,7 +62,7 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:id="@+id/login_kakao"
+        android:id="@+id/register_kakao"
         android:text="카카오 로그인"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#FEE500"
@@ -70,7 +71,7 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:id="@+id/login_google"
+        android:id="@+id/register_google"
         android:text="구글 로그인"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#ffffff"

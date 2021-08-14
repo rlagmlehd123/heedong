@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,7 +26,8 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseRef;
     private EditText register_nickname, register_email, register_password, register_passwordcheck;
-    private Button register_register;
+    private Button register_register, register_naver, register_kakao, register_google;
+    private View register_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
         register_email = findViewById(R.id.register_email);
         register_password = findViewById(R.id.register_password);
         register_passwordcheck = findViewById(R.id.register_passwordcheck);
+
         register_register = findViewById(R.id.register_register);
 
         register_register.setOnClickListener(new View.OnClickListener() {
@@ -87,5 +90,38 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+        register_layout = findViewById(R.id.register_layout);
+
+        register_naver = findViewById(R.id.register_naver);
+
+        register_naver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(register_layout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
+        register_kakao = findViewById(R.id.register_kakao);
+
+        register_kakao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(register_layout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
+        register_google = findViewById(R.id.register_google);
+
+        register_google.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(register_layout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
     }
+
+
 }

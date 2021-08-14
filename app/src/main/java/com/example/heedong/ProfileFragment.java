@@ -24,7 +24,6 @@ public class ProfileFragment extends Fragment {
 
 
     private FirebaseAuth firebaseAuth;
-    private Button fragment_logout, fragment_delete;
 
 
 
@@ -42,7 +41,6 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 firebaseAuth.signOut();
-                onDestroy();
 
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);

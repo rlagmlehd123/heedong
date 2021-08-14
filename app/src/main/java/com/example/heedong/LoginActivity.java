@@ -15,13 +15,25 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
     Button login_login, login_register, login_naver, login_kakao, login_google;
     EditText login_email, login_password;
     private FirebaseAuth firebaseAuth;
-    private View loginlayout;
+    private View login_layout;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
+        if(currentUser != null){
+            reload();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +66,24 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(!task.isSuccessful()){
-
+                                    updateUI(null);
 
                                  if(password.length() < 8){
                                      Toast.makeText(LoginActivity.this,"비밀번호는 8자리 이상이어야 합니다.", Toast.LENGTH_SHORT).show();
+
+                                     if(email.isEmpty()){
+                                         Toast.makeText(LoginActivity.this, "Email을 입력하세요", Toast.LENGTH_SHORT).show();
+
+                                     }
+                                     if(password.isEmpty()){
+                                         Toast.makeText(LoginActivity.this, "비밀번호를 입력하세요", Toast.LENGTH_SHORT).show();
+                                     }
                                  } else {
                                     Toast.makeText(LoginActivity.this, "로그인 오류", Toast.LENGTH_SHORT).show();
                                 }
                             } else {
+                                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                                    updateUI(user);
                                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                     startActivity(intent);
                                     finish();
@@ -74,14 +96,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        loginlayout = findViewById(R.id.login_layout);
+        login_layout = findViewById(R.id.login_layout);
 
         login_naver = findViewById(R.id.login_naver);
 
         login_naver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(loginlayout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(login_layout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
             }
         });
 
@@ -90,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
         login_kakao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(loginlayout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(login_layout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
             }
         });
 
@@ -99,8 +121,13 @@ public class LoginActivity extends AppCompatActivity {
         login_google.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(loginlayout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(login_layout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
             }
         });
+    }
+    private void reload() { }
+
+    private void updateUI(FirebaseUser user) {
+
     }
 }
