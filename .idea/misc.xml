@@ -8,6 +8,11 @@
         <entry key="..\:/Users/Garcia/AndroidStudioProjects/heedong/app/src/main/res/layout/activity_main.xml" value="0.37447916666666664" />
         <entry key="..\:/Users/Garcia/AndroidStudioProjects/heedong/app/src/main/res/layout/activity_register.xml" value="0.37447916666666664" />
         <entry key="..\:/Users/Garcia/AndroidStudioProjects/heedong/app/src/main/res/layout/activity_start.xml" value="0.37447916666666664" />
+        <entry key="..\:/Users/Garcia/AndroidStudioProjects/heedong/app/src/main/res/layout/fragment_chat.xml" value="0.2911458333333333" />
+        <entry key="..\:/Users/Garcia/AndroidStudioProjects/heedong/app/src/main/res/layout/fragment_home.xml" value="0.2911458333333333" />
+        <entry key="..\:/Users/Garcia/AndroidStudioProjects/heedong/app/src/main/res/layout/fragment_likes.xml" value="0.2911458333333333" />
+        <entry key="..\:/Users/Garcia/AndroidStudioProjects/heedong/app/src/main/res/layout/fragment_profile.xml" value="0.2911458333333333" />
+        <entry key="..\:/Users/Garcia/AndroidStudioProjects/heedong/app/src/main/res/layout/fragment_search.xml" value="0.2911458333333333" />
       </map>
     </option>
   </component>

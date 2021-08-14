@@ -4,4 +4,6 @@
     <string name="naver_client_id">7Rb0gsBBROH0dhdqQy8V</string>
     <string name="naver_client_secret">cVo4vH1Lko</string>
     <string name="naver_client_name">xxx</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
