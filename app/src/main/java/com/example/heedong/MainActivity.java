@@ -1,20 +1,28 @@
 package com.example.heedong;
 
 import android.content.Intent;
+import android.graphics.drawable.Animatable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button main_login, main_register;
+    private ImageView main_loading;
+    private Animation animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initView();
 
         main_login = findViewById(R.id.main_login);
 
@@ -30,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void initView(){
+        main_loading = (ImageView) findViewById(R.id.main_loading);
+        animation = AnimationUtils.loadAnimation(this, R.anim.loading);
+        main_loading.setAnimation(animation);
     }
 
 

@@ -26,7 +26,6 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseRef;
     private EditText register_nickname, register_email, register_password, register_passwordcheck;
-    private Button register_register, register_naver, register_kakao, register_google;
     private View register_layout;
 
     @Override
@@ -42,59 +41,71 @@ public class RegisterActivity extends AppCompatActivity {
         register_password = findViewById(R.id.register_password);
         register_passwordcheck = findViewById(R.id.register_passwordcheck);
 
-        register_register = findViewById(R.id.register_register);
+        Button register_register = findViewById(R.id.register_register);
 
         register_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String strnickname = register_nickname.getText().toString().trim();
-                String stremail = register_email.getText().toString().trim();
-                String strpassword = register_password.getText().toString().trim();
-                String strpasswordcheck = register_passwordcheck.getText().toString().trim();
 
-                if (strpassword.equals(strpasswordcheck)) {
-                    mFirebaseAuth.createUserWithEmailAndPassword(stremail, strpassword).addOnCompleteListener(
-                            RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        FirebaseUser user = mFirebaseAuth.getCurrentUser();
-                                        String email = user.getEmail();
-                                        String uid = user.getUid();
-                                        String name = register_nickname.getText().toString().trim();
+                if (!register_email.getText().toString().equals("") && !register_password.getText().toString().equals("")) {
 
-                                        HashMap<Object, String> hashMap = new HashMap<>();
+                    String nickname = register_nickname.getText().toString().trim();
+                    String email = register_email.getText().toString().trim();
+                    String password = register_password.getText().toString().trim();
+                    String passwordcheck = register_passwordcheck.getText().toString().trim();
 
-                                        hashMap.put("uid", uid);
-                                        hashMap.put("email", email);
-                                        hashMap.put("name", name);
+                    if (password.equals(passwordcheck)) {
+                        mFirebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(
+                                RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                                            String email = user.getEmail();
+                                            String uid = user.getUid();
+                                            String name = register_nickname.getText().toString().trim();
 
-                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                        DatabaseReference reference = database.getReference("Users");
-                                        reference.child(uid).setValue(hashMap);
+                                            HashMap<Object, String> hashMap = new HashMap<>();
 
-                                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                        Toast.makeText(RegisterActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(RegisterActivity.this, "이미 존재하는 아이디 입니다.", Toast.LENGTH_SHORT).show();
+                                            hashMap.put("uid", uid);
+                                            hashMap.put("email", email);
+                                            hashMap.put("name", name);
 
+                                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                            DatabaseReference reference = database.getReference("Users");
+                                            reference.child(uid).setValue(hashMap);
+
+                                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                            Toast.makeText(RegisterActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(RegisterActivity.this, "회원가입 생성 오류입니다.", Toast.LENGTH_SHORT).show();
+
+                                        }
                                     }
-                                }
-                            });
+                                });
+
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "비밀번호가 틀렸습니다.", Toast.LENGTH_SHORT).show();
+
+                    }
 
                 } else {
-                    Toast.makeText(RegisterActivity.this, "비밀번호가 틀렸습니다.", Toast.LENGTH_SHORT).show();
-
+                    // 이메일과 비밀번호가 공백인 경우
+                    Toast.makeText(RegisterActivity.this, "계정과 비밀번호를 입력하세요.", Toast.LENGTH_LONG).show();
                 }
             }
         });
 
 
+
+
+
+
         register_layout = findViewById(R.id.register_layout);
 
-        register_naver = findViewById(R.id.register_naver);
+        Button register_naver = findViewById(R.id.register_naver);
 
         register_naver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +114,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        register_kakao = findViewById(R.id.register_kakao);
+        Button register_kakao = findViewById(R.id.register_kakao);
 
         register_kakao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        register_google = findViewById(R.id.register_google);
+        Button register_google = findViewById(R.id.register_google);
 
         register_google.setOnClickListener(new View.OnClickListener() {
             @Override

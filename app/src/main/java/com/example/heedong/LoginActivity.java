@@ -22,18 +22,8 @@ public class LoginActivity extends AppCompatActivity {
     Button login_login, login_register, login_naver, login_kakao, login_google;
     EditText login_email, login_password;
     private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener firebaseAuthListener;
     private View login_layout;
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-
-        if(currentUser != null){
-            reload();
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
         login_email = findViewById(R.id.login_email);
         login_password = findViewById(R.id.login_password);
 
@@ -54,47 +45,35 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        login_login = findViewById(R.id.login_login);
 
+        login_login = findViewById(R.id.login_login);
         login_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = login_email.getText().toString();
-                String password = login_password.getText().toString();
-                firebaseAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(!task.isSuccessful()){
-                                    updateUI(null);
 
-                                 if(password.length() < 8){
-                                     Toast.makeText(LoginActivity.this,"비밀번호는 8자리 이상이어야 합니다.", Toast.LENGTH_SHORT).show();
+                if (!login_email.getText().toString().equals("") && !login_password.getText().toString().equals("")) {
+                    loginUser(login_email.getText().toString(), login_password.getText().toString());
+                } else {
+                    Toast.makeText(LoginActivity.this, "계정과 비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show();
+                }
 
-                                     if(email.isEmpty()){
-                                         Toast.makeText(LoginActivity.this, "Email을 입력하세요", Toast.LENGTH_SHORT).show();
 
-                                     }
-                                     if(password.isEmpty()){
-                                         Toast.makeText(LoginActivity.this, "비밀번호를 입력하세요", Toast.LENGTH_SHORT).show();
-                                     }
-                                 } else {
-                                    Toast.makeText(LoginActivity.this, "로그인 오류", Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                    FirebaseUser user = firebaseAuth.getCurrentUser();
-                                    updateUI(user);
-                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                                    startActivity(intent);
-                                    finish();
-
-                            }
-
-                        }
-
-                        });
             }
         });
+
+        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                }
+            }
+        };
+
 
         login_layout = findViewById(R.id.login_layout);
 
@@ -130,4 +109,42 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser user) {
 
     }
+
+    public void loginUser(String email, String password) {
+
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // 로그인 성공
+                            Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                            firebaseAuth.addAuthStateListener(firebaseAuthListener);
+                        } else {
+                            // 로그인 실패
+                            Toast.makeText(LoginActivity.this, "아이디 또는 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
+        if(currentUser != null){
+            reload();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (firebaseAuthListener != null) {
+            firebaseAuth.removeAuthStateListener(firebaseAuthListener);
+        }
+    }
+
 }
