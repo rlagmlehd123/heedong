@@ -1,96 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/pink"
+    android:orientation="vertical"
     tools:context=".LoginActivity">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/img2"
-        android:background="@color/browser_actions_bg_grey"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"/>
+        android:background="@color/browser_actions_bg_grey"
+        android:src="@drawable/img2" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="CUPIDOG"
+        android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="30sp"
-        android:textAllCaps="true"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <EditText
-        android:layout_width="300dp"
-        android:layout_height="50dp"
         android:id="@+id/login_email"
-        android:hint="E-mail"
-        android:layout_gravity="center_horizontal"
-        android:inputType="textEmailAddress"
-        android:backgroundTint="@color/white"
-        />
-
-    <EditText
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:id="@+id/login_password"
-        android:hint="Password"
         android:layout_gravity="center_horizontal"
-        android:inputType="textPassword"
         android:backgroundTint="@color/white"
-        />
+        android:hint="E-mail"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/login_password"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/white"
+        android:hint="Password"
+        android:inputType="textPassword" />
 
     <Button
-        android:layout_width="200dp"
-        android:layout_height="50dp"
         android:id="@+id/login_login"
-        android:text="login"
-        android:layout_gravity="center_horizontal"
-        />
-
-    <Button
         android:layout_width="200dp"
         android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:text="로그인" />
+
+    <Button
         android:id="@+id/login_register"
-        android:text="Register"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
-        />
-
-    <Button
         android:layout_width="200dp"
         android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:text="회원 가입" />
+
+    <Button
         android:id="@+id/login_naver"
-        android:text="네이버 로그인"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#03C75A"
-        android:textColor="@color/black"
-        />
+        android:text="네이버 로그인"
+        android:textColor="@color/black" />
+
     <Button
-        android:layout_width="200dp"
-        android:layout_height="50dp"
         android:id="@+id/login_kakao"
-        android:text="카카오 로그인"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#FEE500"
-        android:textColor="@color/black"
-        />
+        android:text="카카오 로그인"
+        android:textColor="@color/black" />
+
     <Button
-        android:layout_width="200dp"
-        android:layout_height="50dp"
         android:id="@+id/login_google"
-        android:text="구글 로그인"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#ffffff"
-        android:textColor="@color/black"
-        />
+        android:text="구글 로그인"
+        android:textColor="@color/black" />
 
 </LinearLayout>

@@ -41,7 +41,7 @@ public class ProfileFragment extends Fragment {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setMessage("로그아웃 하시겠습니까?");
-                builder.setPositiveButton("네", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("네", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         firebaseAuth.signOut();
@@ -53,7 +53,7 @@ public class ProfileFragment extends Fragment {
                         Toast.makeText(getActivity(),"로그아웃 되었습니다.", Toast.LENGTH_LONG).show();
                     }
                 });
-                builder.setNegativeButton("아니오", null);
+                builder.setPositiveButton("아니오", null);
                 builder.create().show();
 
 
@@ -66,7 +66,7 @@ public class ProfileFragment extends Fragment {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setMessage("회원 탈퇴를 하시겠습니까?");
-                builder.setPositiveButton("네", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("네", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         firebaseAuth.getCurrentUser().delete();
@@ -76,7 +76,7 @@ public class ProfileFragment extends Fragment {
                         Toast.makeText(getActivity(),"탈퇴했습니다.", Toast.LENGTH_LONG).show();
                     }
                 });
-                builder.setNegativeButton("아니오", null);
+                builder.setPositiveButton("아니오", null);
                 builder.create().show();
 
 
