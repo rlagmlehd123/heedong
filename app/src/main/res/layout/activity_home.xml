@@ -24,37 +24,42 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true">
 
-        <Button
+        <ImageButton
             android:id="@+id/home_bottom_home"
             android:layout_weight="1"
+            android:src="@drawable/ic_home"
             android:text="Home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10sp"/>
-        <Button
+        <ImageButton
             android:id="@+id/home_bottom_search"
             android:layout_weight="1"
+            android:src="@drawable/ic_search"
             android:text="search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10sp"/>
-        <Button
+        <ImageButton
             android:id="@+id/home_bottom_likes"
             android:layout_weight="1"
+            android:src="@drawable/ic_likes"
             android:text="Likes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10sp"/>
-        <Button
+        <ImageButton
             android:id="@+id/home_bottom_chat"
             android:layout_weight="1"
+            android:src="@drawable/ic_chat"
             android:text="Chat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10sp"/>
-        <Button
+        <ImageButton
             android:id="@+id/home_bottom_profile"
             android:layout_weight="1"
+            android:src="@drawable/ic_profile"
             android:text="Profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

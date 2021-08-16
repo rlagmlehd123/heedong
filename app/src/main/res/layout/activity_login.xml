@@ -5,27 +5,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop="100dp"
+    android:background="@color/pink"
     tools:context=".LoginActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img2"
+        android:background="@color/browser_actions_bg_grey"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="CUPIDOG"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textAllCaps="true"
+        android:textStyle="bold"/>
+
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/login_email"
         android:hint="E-mail"
         android:layout_gravity="center_horizontal"
         android:inputType="textEmailAddress"
+        android:backgroundTint="@color/white"
         />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/login_password"
         android:hint="Password"
         android:layout_gravity="center_horizontal"
         android:inputType="textPassword"
+        android:backgroundTint="@color/white"
         />
 
     <Button

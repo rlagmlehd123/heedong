@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -15,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class HomeActivity extends AppCompatActivity {
 
 
-    Button home_bottom_likes, home_bottom_chat, home_bottom_home, home_bottom_search, home_bottom_profile;
+    ImageButton home_bottom_likes, home_bottom_chat, home_bottom_home, home_bottom_search, home_bottom_profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
