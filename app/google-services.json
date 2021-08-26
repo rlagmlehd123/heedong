@@ -20,10 +20,6 @@
             "package_name": "com.example.heedong",
             "certificate_hash": "6a6cded64df62ab2d690bb2de715f9006a4bfd40"
           }
-        },
-        {
-          "client_id": "332659904233-30aojnq573mm0kohsv14opok2o22uhf0.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [
@@ -33,12 +29,7 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "332659904233-30aojnq573mm0kohsv14opok2o22uhf0.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

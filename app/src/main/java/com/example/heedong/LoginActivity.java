@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private View login_layout;
 
     GoogleSignInClient mGoogleSignInClient;
-    private final int RC_SIGN_IN = 9001;
+    private final int RC_SIGN_IN = 123;
     private static final String TAG ="LoginActivity";
 
     @Override
@@ -113,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
         // 앱에 필요한 사용자 데이터를 요청하도록 로그인 옵션을 설정한다.
         // DEFAULT_SIGN_IN parameter는 유저의 ID와 기본적인 프로필 정보를 요청하는데 사용된다.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail() // email addresses도 요청함
                 .build();
 
@@ -131,6 +132,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signIn();
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                startActivity(intent);
 
             }
         });
@@ -200,6 +203,12 @@ public class LoginActivity extends AppCompatActivity {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+/*            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+            } catch (ApiException e) {
+
+            }*/
             handleSignInResult(task);
         }
     }
@@ -215,11 +224,11 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = firebaseAuth.getCurrentUser();
-                            updateUI(user);
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            updateUI(null);
+
                         }
                     }
                 });
