@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         main_login.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
+            finish();
         });
 
         main_register = findViewById(R.id.main_register);
