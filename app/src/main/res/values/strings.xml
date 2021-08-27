@@ -4,6 +4,9 @@
     <string name="naver_client_id">7Rb0gsBBROH0dhdqQy8V</string>
     <string name="naver_client_secret">cVo4vH1Lko</string>
     <string name="naver_client_name">xxx</string>
+
+    <string name="server_client_id">332659904233-3nnm21qnbcu789kuhab7ppqcu05r07v5.apps.googleusercontent.com</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

@@ -18,6 +18,8 @@ public class HomeActivity extends AppCompatActivity {
 
     ImageButton home_bottom_likes, home_bottom_chat, home_bottom_home, home_bottom_search, home_bottom_profile;
 
+    public static final String GOOGLE_ACCOUNT = "google_account";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -14,17 +14,17 @@
       },
       "oauth_client": [
         {
-          "client_id": "332659904233-1cku2oqq69v9fvgm1j91tpbpt8bdskmi.apps.googleusercontent.com",
+          "client_id": "332659904233-3nnm21qnbcu789kuhab7ppqcu05r07v5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.heedong",
-            "certificate_hash": "6a6cded64df62ab2d690bb2de715f9006a4bfd40"
+            "certificate_hash": "7f0e812ff9cc5710de46e1f90b422222da1d0abb"
           }
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBRL_uYadhbLKtPlRZEEsLuWQgXqzqvsI4"
+          "current_key": "AIzaSyCgro3R_-Q1qyaFW7pbnr6h1gDVVCuDeQY"
         }
       ],
       "services": {
