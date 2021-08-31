@@ -56,13 +56,12 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         firebaseAuth.signOut();
-                        mGoogleSignInClient.signOut();
 
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
 
 
-                        Toast.makeText(getActivity(),"로그아웃 되었습니다.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "로그아웃 되었습니다.", Toast.LENGTH_LONG).show();
                     }
                 });
                 builder.setPositiveButton("아니오", null);
