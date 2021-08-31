@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (!login_email.getText().toString().equals("") && !login_password.getText().toString().equals("")) {
                     loginUser(login_email.getText().toString(), login_password.getText().toString());
                 } else {
-                    Toast.makeText(LoginActivity.this, "계정과 비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "계정과 비밀번호를 입력하세요.", Toast.LENGTH_LONG).show();
                 }
 
 
@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
         login_naver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(login_layout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(login_layout, "준비중입니다.", Snackbar.LENGTH_LONG).show();
             }
         });
 
@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
         login_kakao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(login_layout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(login_layout, "준비중입니다.", Snackbar.LENGTH_LONG).show();
             }
         });
 
@@ -128,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Snackbar.make(login_layout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(login_layout, "준비중입니다.", Snackbar.LENGTH_LONG).show();
 
             }
         });
@@ -166,11 +166,11 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // 로그인 성공
-                            Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_LONG).show();
                             firebaseAuth.addAuthStateListener(firebaseAuthListener);
                         } else {
                             // 로그인 실패
-                            Toast.makeText(LoginActivity.this, "아이디 또는 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "아이디 또는 비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
