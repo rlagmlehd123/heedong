@@ -20,10 +20,21 @@ public class HomeActivity extends AppCompatActivity {
 
     public static final String GOOGLE_ACCOUNT = "google_account";
 
+    public void onStart() {
+        super.onStart();
+//Fragment lifecycle 메서드 구현시, 항상 상위 클래스를 호출해야 한다.
+
+     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        LikesFragment likesFragment = new LikesFragment();
+        transaction.replace(R.id.frame, likesFragment);
+        transaction.commit();
 
 
 

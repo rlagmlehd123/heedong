@@ -36,7 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
 
-        register_nickname = findViewById(R.id.register_nickname);
         register_email = findViewById(R.id.register_email);
         register_password = findViewById(R.id.register_password);
         register_passwordcheck = findViewById(R.id.register_passwordcheck);
@@ -49,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (!register_email.getText().toString().equals("") && !register_password.getText().toString().equals("")) {
 
-                    String nickname = register_nickname.getText().toString().trim();
+
                     String email = register_email.getText().toString().trim();
                     String password = register_password.getText().toString().trim();
                     String passwordcheck = register_passwordcheck.getText().toString().trim();
@@ -63,74 +62,44 @@ public class RegisterActivity extends AppCompatActivity {
                                             FirebaseUser user = mFirebaseAuth.getCurrentUser();
                                             String email = user.getEmail();
                                             String uid = user.getUid();
-                                            String name = register_nickname.getText().toString().trim();
+
 
                                             HashMap<Object, String> hashMap = new HashMap<>();
 
                                             hashMap.put("uid", uid);
                                             hashMap.put("email", email);
-                                            hashMap.put("name", name);
+
 
                                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                                             DatabaseReference reference = database.getReference("Users");
                                             reference.child(uid).setValue(hashMap);
 
+
+                                            Snackbar.make(register_layout, "회원가입에 성공했습니다.", Snackbar.LENGTH_SHORT).show();
+
                                             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                             startActivity(intent);
                                             finish();
-                                            Toast.makeText(RegisterActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
                                         } else {
-                                            Toast.makeText(RegisterActivity.this, "회원가입 생성 오류입니다.", Toast.LENGTH_SHORT).show();
+                                            Snackbar.make(register_layout, "회원가입 생성 오류입니다.", Snackbar.LENGTH_SHORT).show();
 
                                         }
                                     }
                                 });
 
                     } else {
-                        Toast.makeText(RegisterActivity.this, "비밀번호가 틀렸습니다.", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(register_layout, "비밀번호가 틀렸습니다.", Snackbar.LENGTH_SHORT).show();
 
                     }
 
                 } else {
                     // 이메일과 비밀번호가 공백인 경우
-                    Toast.makeText(RegisterActivity.this, "계정과 비밀번호를 입력하세요.", Toast.LENGTH_LONG).show();
+                    Snackbar.make(register_layout, "아이디와 비밀번호를 입력하세요", Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
 
 
-
-
-
-
-        register_layout = findViewById(R.id.register_layout);
-
-        Button register_naver = findViewById(R.id.register_naver);
-
-        register_naver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(register_layout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
-            }
-        });
-
-        Button register_kakao = findViewById(R.id.register_kakao);
-
-        register_kakao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(register_layout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
-            }
-        });
-
-        Button register_google = findViewById(R.id.register_google);
-
-        register_google.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(register_layout, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
-            }
-        });
 
     }
 
