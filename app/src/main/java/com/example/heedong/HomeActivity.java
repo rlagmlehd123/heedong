@@ -31,6 +31,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         LikesFragment likesFragment = new LikesFragment();
         transaction.replace(R.id.frame, likesFragment);
