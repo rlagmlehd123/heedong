@@ -3,6 +3,7 @@ package com.example.heedong;
 import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -124,15 +125,19 @@ public class LoginActivity extends AppCompatActivity {
 
         login_google = findViewById(R.id.login_google);
 
-        // [START config_signin]
-        // Configure Google Sign In
+        // [START configure_signin]
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+        // [END configure_signin]
 
+        // [START build_client]
+        // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        // [END config_signin]
+        // [END build_client]
+
 
         // [START initialize_auth]
         // Initialize Firebase Auth
@@ -168,59 +173,61 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    // [START onActivityResult]
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
+    // [END onActivityResult]
+
+    // [START handleSignInResult]
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            // Signed in successfully, show authenticated UI.
+            GupdateUI(account);
+
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(intent);
+
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+            GupdateUI(null);
+        }
+    }
+    // [END handleSignInResult]
+
     @Override
     protected void onStart() {
         super.onStart();
 
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+        FupdateUI(currentUser);
+
+        // [START on_start_sign_in]
+        // Check for existing Google Sign In account, if the user is already signed in
+        // the GoogleSignInAccount will be non-null.
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        GupdateUI(account);
+        // [END on_start_sign_in]
 
     }
 
-    // [START onactivityresult]
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
-                firebaseAuthWithGoogle(account.getIdToken());
-            } catch (ApiException e) {
-                // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed", e);
-            }
-        }
-    }
-    // [END onactivityresult]
 
-    // [START auth_with_google]
-    private void firebaseAuthWithGoogle(String idToken) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            updateUI(null);
-                        }
-                    }
-                });
-    }
-    // [END auth_with_google]
 
     // [START signin]
     private void signIn() {
@@ -229,7 +236,21 @@ public class LoginActivity extends AppCompatActivity {
     }
     // [END signin]
 
-    private void updateUI(FirebaseUser user) {    }
+    private void FupdateUI(FirebaseUser user) {    }
+
+    private void GupdateUI(@Nullable GoogleSignInAccount account) {
+/*        if (account != null) {
+            mStatusTextView.setText(getString(R.string.signed_in_fmt, account.getDisplayName()));
+
+            findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
+        } else {
+            mStatusTextView.setText(R.string.signed_out);
+
+            findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
+            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
+        }*/
+    }
 
     private void reload() { }
 
