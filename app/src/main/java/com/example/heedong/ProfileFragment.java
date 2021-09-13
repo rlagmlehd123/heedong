@@ -2,6 +2,7 @@ package com.example.heedong;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.nhn.android.naverlogin.OAuthLogin;
 
 
 public class ProfileFragment extends Fragment {
@@ -36,6 +38,7 @@ public class ProfileFragment extends Fragment {
 
     private FirebaseAuth firebaseAuth;
     private GoogleSignInClient mGoogleSignInClient;
+    private static OAuthLogin mOAuthLoginInstance;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,6 +59,7 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         firebaseAuth.signOut();
+                        mOAuthLoginInstance.logout(getContext());
 
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);

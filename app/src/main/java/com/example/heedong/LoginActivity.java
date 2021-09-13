@@ -2,17 +2,23 @@ package com.example.heedong;
 
 import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
 
+import static com.nhn.android.naverlogin.OAuthLogin.mOAuthLoginHandler;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -30,6 +36,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.nhn.android.naverlogin.OAuthLogin;
+import com.nhn.android.naverlogin.OAuthLoginHandler;
+import com.nhn.android.naverlogin.ui.view.OAuthLoginButton;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -37,6 +46,13 @@ public class LoginActivity extends AppCompatActivity {
     EditText login_email, login_password;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
+
+    private static OAuthLogin mOAuthLoginInstance;
+    private static Context mContext;
+    private static String naver_client_id = "7Rb0gsBBROH0dhdqQy8V";
+    private static String naver_client_secret = "cVo4vH1Lko";
+    private static String naver_client_name = "heedong";
+
     private View login_layout;
 
     private GoogleSignInClient mGoogleSignInClient;
@@ -48,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
 
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null) {
@@ -105,10 +123,19 @@ public class LoginActivity extends AppCompatActivity {
         login_layout = findViewById(R.id.login_layout);
 
         login_naver = findViewById(R.id.login_naver);
+
+        mContext = LoginActivity.this;
+        mOAuthLoginInstance = OAuthLogin.getInstance();
+        mOAuthLoginInstance.init(mContext, naver_client_id, naver_client_secret, naver_client_name);
+
+
+
         login_naver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(login_layout, "준비중입니다.", Snackbar.LENGTH_LONG).show();
+                //Snackbar.make(login_layout, "준비중입니다.", Snackbar.LENGTH_LONG).show();
+
+                mOAuthLoginInstance.startOauthLoginActivity(LoginActivity.this, mOAuthLoginHandler);
             }
         });
 
@@ -154,6 +181,26 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+
+    private OAuthLoginHandler mOAuthLoginHandler = new OAuthLoginHandler() {
+        @Override
+        public void run(boolean success) {
+            if (success) {
+                String accessToken = mOAuthLoginInstance.getAccessToken(mContext);
+                String refreshToken = mOAuthLoginInstance.getRefreshToken(mContext);
+                long expiresAt = mOAuthLoginInstance.getExpiresAt(mContext);
+                String tokenType = mOAuthLoginInstance.getTokenType(mContext);
+            } else {
+                String errorCode = mOAuthLoginInstance.getLastErrorCode(mContext).getCode();
+                String errorDesc = mOAuthLoginInstance.getLastErrorDesc(mContext);
+                Toast.makeText(mContext, "errorCode:" + errorCode
+                        + ", errorDesc:" + errorDesc, Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+
+
 
     public void loginUser(String email, String password) {
 
@@ -253,6 +300,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void reload() { }
+
+    @Override
+    protected void onResume() {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        super.onResume();
+
+    }
 
 
 
