@@ -191,6 +191,10 @@ public class LoginActivity extends AppCompatActivity {
                 String refreshToken = mOAuthLoginInstance.getRefreshToken(mContext);
                 long expiresAt = mOAuthLoginInstance.getExpiresAt(mContext);
                 String tokenType = mOAuthLoginInstance.getTokenType(mContext);
+
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                startActivity(intent);
+
             } else {
                 String errorCode = mOAuthLoginInstance.getLastErrorCode(mContext).getCode();
                 String errorDesc = mOAuthLoginInstance.getLastErrorDesc(mContext);
