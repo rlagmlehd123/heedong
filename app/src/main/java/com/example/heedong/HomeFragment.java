@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.storage.FirebaseStorage;
@@ -27,9 +28,8 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
 
-    private final int GALLERY_CODE = 10;
-    ImageView photo;
-    private FirebaseStorage storage;
+    private int REQUEST_CODE_PERMISSIONS = 1001;
+    private final String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE"};
 
 
 
@@ -61,10 +61,8 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+
     }
 
     @Override
@@ -72,9 +70,6 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
-
-
-
 
 
 

@@ -1,24 +1,27 @@
 package com.example.heedong;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+
 
 public class HomeActivity extends AppCompatActivity {
 
 
     ImageButton home_bottom_likes, home_bottom_chat, home_bottom_home, home_bottom_search, home_bottom_profile;
+    Button home_camera;
+
+    private long backBtnTime = 0;
 
     public static final String GOOGLE_ACCOUNT = "google_account";
+
+
 
     public void onStart() {
         super.onStart();
@@ -45,6 +48,8 @@ public class HomeActivity extends AppCompatActivity {
         home_bottom_home =findViewById(R.id.home_bottom_home);
         home_bottom_search =findViewById(R.id.home_bottom_search);
         home_bottom_profile =findViewById(R.id.home_bottom_profile);
+
+
 
         home_bottom_likes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +101,34 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        home_camera = findViewById(R.id.home_camera);
+
+        home_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, CameraActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
+
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        long curTime = System.currentTimeMillis();
+        long gaptime = curTime - backBtnTime;
+
+        if(0 <= gaptime && 2000 >= gaptime){
+            super.onBackPressed();
+        }
+        else {
+            backBtnTime = curTime;
+            Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+        }
+        super.onBackPressed();
     }
 }
