@@ -19,10 +19,6 @@ public class HomeActivity extends AppCompatActivity {
 
     private long backBtnTime = 0;
 
-    public static final String GOOGLE_ACCOUNT = "google_account";
-
-
-
     public void onStart() {
         super.onStart();
 //Fragment lifecycle 메서드 구현시, 항상 상위 클래스를 호출해야 한다.

@@ -34,6 +34,11 @@
         <activity
             android:name=".CameraActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".GlobalApplication"
+            android:exported="true" />
+
         <activity
             android:name=".LoginActivity"
             android:exported="true" />

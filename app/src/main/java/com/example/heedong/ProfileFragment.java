@@ -39,6 +39,8 @@ public class ProfileFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private GoogleSignInClient mGoogleSignInClient;
     private static OAuthLogin mOAuthLoginInstance;
+    private Context mContext;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,7 +61,8 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         firebaseAuth.signOut();
-                        mOAuthLoginInstance.logout(getContext());
+                        mOAuthLoginInstance.logout(mContext);
+
 
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
@@ -79,12 +82,16 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setMessage("회원 탈퇴를 하시겠습니까?");
                 builder.setNegativeButton("네", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         firebaseAuth.getCurrentUser().delete();
+
+
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
 
@@ -99,5 +106,9 @@ public class ProfileFragment extends Fragment {
         });
 
         return view;
+
+
     }
+
+
 }

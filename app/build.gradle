@@ -26,6 +26,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    compileSdkVersion 30
 }
 
 dependencies {
@@ -84,6 +85,9 @@ dependencies {
 
 
     //kakao
+
+    // 카카오 SDK 모듈 설정
+    implementation "com.kakao.sdk:v2-user:2.4.2"
 
     //naver
 
